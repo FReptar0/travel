@@ -7,6 +7,8 @@ import Details from '../screen/DetailsScreen';
 import InformationScreen from '../screen/InformationScreen';
 import IndexStack from './IndexStack';
 import LogScreen from '../screen/LoginScreen';
+import DetailsS from './DetailStack';
+import InformationS from './InformationStack';
 
 // const drawer = createDrawerNavigator();
 
@@ -36,7 +38,7 @@ const tabs = createBottomTabNavigator();
 
 export default function AppNavigation() {
     return (
-        <tabs.Navigator>
+        <tabs.Navigator screenOptions={{headerShown: false}}>
             <tabs.Screen
                 name="Index"
                 component={IndexStack}
@@ -44,13 +46,13 @@ export default function AppNavigation() {
             />
             <tabs.Screen
                 name="Details"
-                component={Details}
+                component={DetailsS}
                 options={{ title: 'Details' }}
             />
             <tabs.Screen
                 name="Information"
-                component={InformationScreen}
-                options={{ title: 'InformationScreen' }}
+                component={InformationS}
+                options={{ title: 'Information Screen' }}
             />
 
         </tabs.Navigator>

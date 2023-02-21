@@ -1,16 +1,16 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
-import Index from '../screen/IndexScreen';
 import LogScreen from '../screen/LoginScreen';
+import InformationScreen from '../screen/InformationScreen';
 
-export default function IndexStack() {
+export default function InformationS() {
     const stack = createStackNavigator();
     return (
         <stack.Navigator>
             <stack.Screen
-                name="IndexS"
-                component={Index}
-                options={{ title: 'Index' }}
+                name="Information"
+                component={InformationScreen}
+                options={{ title: 'Information' }}
             />
             <stack.Screen
                 name="LoginS"
