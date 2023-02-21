@@ -9,6 +9,7 @@ export default function Index(props) {
       <Text>Index Screen</Text>
       <Button title="Go to Details" onPress={() => navigation.navigate("Details")} />
       <Button title="Go to Information" onPress={() => navigation.navigate("Information")} />
+      <Button title="Go to Login" onPress={() => navigation.navigate("LoginS")} />
     </View>
   )
 }

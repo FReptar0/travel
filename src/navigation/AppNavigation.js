@@ -5,54 +5,57 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import Index from '../screen/IndexScreen';
 import Details from '../screen/DetailsScreen';
 import InformationScreen from '../screen/InformationScreen';
+import IndexStack from './IndexStack';
+import LogScreen from '../screen/LoginScreen';
 
-const drawer = createDrawerNavigator();
-
-export default function AppNavigation() {
-    return (
-        <drawer.Navigator>
-            <drawer.Screen
-                name="Index"
-                component={Index}
-                options={{ title: 'Home' }}
-            />
-            <drawer.Screen
-                name="Details"
-                component={Details}
-                options={{ title: 'Details' }}
-            />
-            <drawer.Screen
-                name="Information"
-                component={InformationScreen}
-                options={{ title: 'Information' }}
-            />
-        </drawer.Navigator>
-    )
-}
-
-// const tabs = createBottomTabNavigator();
+// const drawer = createDrawerNavigator();
 
 // export default function AppNavigation() {
 //     return (
-//         <tabs.Navigator>
-//             <tabs.Screen
+//         <drawer.Navigator>
+//             <drawer.Screen
 //                 name="Index"
 //                 component={Index}
 //                 options={{ title: 'Home' }}
 //             />
-//             <tabs.Screen
+//             <drawer.Screen
 //                 name="Details"
 //                 component={Details}
 //                 options={{ title: 'Details' }}
 //             />
-//             <tabs.Screen
+//             <drawer.Screen
 //                 name="Information"
 //                 component={InformationScreen}
-//                 options={{ title: 'InformationScreen' }}
+//                 options={{ title: 'Information' }}
 //             />
-//         </tabs.Navigator>
+//         </drawer.Navigator>
 //     )
 // }
+
+const tabs = createBottomTabNavigator();
+
+export default function AppNavigation() {
+    return (
+        <tabs.Navigator>
+            <tabs.Screen
+                name="Index"
+                component={IndexStack}
+                options={{ title: 'Home' }}
+            />
+            <tabs.Screen
+                name="Details"
+                component={Details}
+                options={{ title: 'Details' }}
+            />
+            <tabs.Screen
+                name="Information"
+                component={InformationScreen}
+                options={{ title: 'InformationScreen' }}
+            />
+
+        </tabs.Navigator>
+    )
+}
 
 // const Stack = createStackNavigator();
 
