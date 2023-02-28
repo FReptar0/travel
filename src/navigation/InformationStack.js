@@ -12,11 +12,6 @@ export default function InformationS() {
                 component={InformationScreen}
                 options={{ title: 'Information' }}
             />
-            <stack.Screen
-                name="LoginS"
-                component={LogScreen}
-                options={{ title: 'Home' }}
-            />
         </stack.Navigator>
     )
 }

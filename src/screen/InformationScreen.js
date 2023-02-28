@@ -2,7 +2,6 @@ import { Button, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
 export default function InformationScreen(props) {
-  console.log(props)
   const { navigation } = props
   return (
     <View>

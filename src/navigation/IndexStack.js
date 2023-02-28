@@ -15,7 +15,7 @@ export default function IndexStack() {
             <stack.Screen
                 name="LoginS"
                 component={LogScreen}
-                options={{ title: 'Home' }}
+                options={{ title: 'Iniciar Sesión' }}
             />
         </stack.Navigator>
     )
