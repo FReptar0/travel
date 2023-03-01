@@ -2,17 +2,21 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Image } from 'react-native-elements'
 import RegisterForm from '../components/account/RegisterForm'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 export default function RegisterScreenS() {
   return (
-    <View style={styles.view}>
-      <Image source={require('../../assets/img/unnamed.png')}
-      style={styles.image} />
-      <Text>Register Screen</Text>
-      <View style={styles.form}>
-        <RegisterForm style={styles.formText} />
+    <KeyboardAwareScrollView style={styles.keyboard}>
+      <View style={styles.view}>
+        <Image source={require('../../assets/img/unnamed.png')}
+          style={styles.image} />
+        <Text>Register Screen</Text>
+        <View>
+          <RegisterForm style={styles.formText} />
+        </View>
       </View>
-    </View>
+    </KeyboardAwareScrollView>
+
   )
 }
 
@@ -30,19 +34,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
   },
-  form: {
-    marginTop: 20,
-    marginBottom: 20,
-    fontSize: 20,
-    fontWeight: 'bold',
-    borderColor: '#000',
-    borderWidth: 1,
-    borderRadius: 10,
-    width: 300,
-    height: 480,
-    textAlign: 'center',
-    padding: 10,
-    paddingBottom: 20,
+  keyboard: {
+    backgroundColor: '#fff',
   },
-
 })

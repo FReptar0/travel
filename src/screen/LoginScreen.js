@@ -2,22 +2,27 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Image } from 'react-native-elements'
 import { useNavigation } from '@react-navigation/native'
+import LoginForm from '../components/account/LoginForm'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 
 export default function LogScreen() {
+
   const navigation = useNavigation()
-  
+
   const irRegistro = () => {
-    console.log('Registro')
     navigation.navigate('RegisterS')
   }
+
   return (
-    <View style={styles.view}>
-      <Image source={require('../../assets/img/unnamed.png')}
-      style={styles.image} />
-      <Text>Login Screen</Text>
-      <Text onPress={irRegistro}>Ir a Registro</Text>
-    </View>
+    <KeyboardAwareScrollView style={styles.keyboard}>
+      <View style={styles.view}>
+        <Image source={require('../../assets/img/unnamed.png')}
+          style={styles.image} />
+        <Text>Login Screen</Text>
+        <LoginForm />
+      </View>
+    </KeyboardAwareScrollView>
   )
 }
 
@@ -34,5 +39,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
+    height: "100%",
+  },
+  keyboard: {
+    backgroundColor: '#fff',
   },
 })
