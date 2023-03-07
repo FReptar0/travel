@@ -10,6 +10,7 @@ import IndexStack from './IndexStack';
 import LogScreen from '../screen/LoginScreen';
 import DetailsS from './DetailStack';
 import InformationS from './InformationStack';
+import ProfileStack from './ProfileStack';
 
 // const drawer = createDrawerNavigator();
 
@@ -56,9 +57,9 @@ export default function AppNavigation() {
                 options={{ title: 'Details'}}
             />
             <tabs.Screen
-                name="Information"
-                component={InformationS}
-                options={{ title: 'Information Screen'}}
+                name="Profile"
+                component={ProfileStack}
+                options={{ title: 'Profile'}}
             />
 
         </tabs.Navigator>
@@ -73,9 +74,8 @@ function showIcons(route, color, size) {
     if (route.name == "Details") {
         icono="details"
     }
-    
-    if (route.name == "Information") {
-        icono="information"
+    if (route.name == "Profile") {
+        icono="account-outline"
     }
     return (
         <Icon

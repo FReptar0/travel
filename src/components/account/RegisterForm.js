@@ -1,14 +1,28 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, {useState} from 'react'
 import { Button, Input, Icon } from 'react-native-elements'
 import { useNavigation } from '@react-navigation/native'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
+import Toast from 'react-native-toast-message'
 
 export default function RegisterForm() {
   const navigation = useNavigation()
   const irLogin = () => {
     navigation.navigate('IndexS')
+  }
+
+
+  const [password, setPassword] = useState(false);
+  const [repeatPassword, setRepeatPassword] = useState(false);
+
+  const showPass = () => {
+    setPassword(!password)
+  }
+
+  const showRepeatPass = () => {
+    setRepeatPassword(!repeatPassword)
   }
 
   const formik = useFormik({
@@ -18,8 +32,18 @@ export default function RegisterForm() {
       repeatPassword: '',
     },
     validateOnChange: false,
-    onSubmit: (formData) => {
-      console.log(formData)
+    onSubmit: async(formValue) => {
+      try{
+        const auth = getAuth();
+        await createUserWithEmailAndPassword(auth, formValue.email, formValue.password)
+        navigation.goBack()
+      }catch(error){
+        Toast.show({
+          type: 'error',
+          position: 'bottom',
+          text: "Error al registrar el usuario"
+        })
+      }
     },
     validationSchema: Yup.object({
       email: Yup.string().email("Formato no valido").required("El email es obligatorio"),
@@ -40,17 +64,21 @@ export default function RegisterForm() {
       />
       <Input placeholder='Contraseña'
         leftIcon={{ type: 'material-community', name: 'lock-outline' }}
-        secureTextEntry={true}
+        secureTextEntry={password ? false : true}
+        rightIcon={<Icon type="material-community" name={password ? "eye-off-outline" : "eye-outline"}
+        onPress={showPass} />}
         onChangeText={text => formik.setFieldValue('password', text)}
         errorMessage={formik.errors.password}
       />
       <Input placeholder='Repetir Contraseña'
         leftIcon={{ type: 'material-community', name: 'lock-outline' }}
-        secureTextEntry={true}
+        secureTextEntry={repeatPassword ? false : true}
+        rightIcon={<Icon type="material-community" name={repeatPassword ? "eye-off-outline" : "eye-outline"}
+        onPress={showRepeatPass}/>}
         onChangeText={text => formik.setFieldValue('repeatPassword', text)}
         errorMessage={formik.errors.repeatPassword}
       />
-      <Button title='Registrar' onPress={formik.handleSubmit} />
+      <Button title='Registrar' onPress={formik.handleSubmit} loading={formik.isSubmitting}/>
       <Text style={styles.login} onPress={irLogin}>¿Ya tienes una cuenta? Inicia Sesión</Text>
     </View>
   )
